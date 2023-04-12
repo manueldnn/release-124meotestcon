@@ -1,0 +1,24 @@
+{
+  "id": 13,
+  "globalId": "3b21874c-e4ac-4f05-9718-ef4cbbdc9245",
+  "namespace": {
+    "id": 1,
+    "globalId": "205330f6-54d4-467a-806b-d425037a90f2",
+    "name": "PAASysUpdates",
+    "description": "",
+    "isSystem": true
+  },
+  "name": "HotfixesBannerToogle",
+  "description": "",
+  "parser": "<parser><type>string</type><replace>false</replace><decodeHtml>false</decodeHtml></parser>",
+  "defaultValue": "",
+  "cacheTime": 0,
+  "cacheLayer": "Global",
+  "src": {
+    "sql": "IF EXISTS (\r\n   \tSELECT TOP 1 SU.Id \r\n\tFROM dbo.PlantAnApp_Updates_SpecificUpdates AS SU\r\n\tINNER JOIN dbo.PlantAnApp_Updates_Hotfixes AS H ON H.ProductID = SU.Product\r\n\tWHERE SU.Priority = 1 OR SU.Priority = 2\r\n)\r\nBEGIN\r\n\tSELECT '[PAASysUpdates:HotfixesBanner]'\r\nEND\r\nELSE\r\nBEGIN\r\n\tSELECT ''\r\nEND",
+    "defaultColumn": "",
+    "columns": "",
+    "connectionString": "",
+    "type": "db"
+  }
+}
